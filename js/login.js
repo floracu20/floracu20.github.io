@@ -11,3 +11,8 @@ function inicio(){
 
 button.onclick = inicio;
 inicio();
+
+document.getElementById("ingBtn").addEventListener("click", ()=>{
+    localStorage.setItem("user", document.getElementById("email").value)
+    document.getElementById('login').innerHTML = localStorage.getItem("user");
+})

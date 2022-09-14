@@ -11,4 +11,11 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
+    
+    //Muestra el nombre de usuario en la barra superior, pero en caso de no tener usuario muestra Login
+    if (localStorage.getItem('user') == undefined){
+        document.getElementById("mostrarUsuario").innerHTML = "Login"
+    }else{
+        document.getElementById("mostrarUsuario").innerHTML = localStorage.getItem('user')
+    }
 });

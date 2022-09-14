@@ -140,4 +140,11 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showCategoriesList();
     });
+
+    //Muestra el nombre de usuario en la barra superior, pero en caso de no tener usuario muestra Login
+    if (localStorage.getItem('user') == undefined){
+        document.getElementById("mostrarUsuario").innerHTML = "Login"
+    }else{
+        document.getElementById("mostrarUsuario").innerHTML = localStorage.getItem('user')
+    }
 });
