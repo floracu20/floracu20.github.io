@@ -14,5 +14,5 @@ inicio();
 
 document.getElementById("ingBtn").addEventListener("click", ()=>{
     localStorage.setItem("user", document.getElementById("email").value)
-    document.getElementById('login').innerHTML = localStorage.getItem("user");
+    document.getElementById("mostrarUsuario").innerHTML = localStorage.getItem("user");
 })
