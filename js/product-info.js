@@ -5,6 +5,13 @@ let producto = {};
 let comentario = {};
 let input = document.getElementById("nuevoComentario");
 
+
+//almaceno el ID de cada producto en el localStorage
+function setProduct(id){
+    localStorage.setItem("prodID", id);
+    window.location.href = "product-info.html"; //redirijo al product-info.html de ese producto.
+}
+
 function starscore(stars) {  //función que, según la puntuacion del usuario, califica en estrellas
     let htmlStar = ""
     for (let i = 0; i < stars; i++) {
@@ -27,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("descripción").innerHTML = producto.description;
             document.getElementById("categoría").innerHTML = producto.category;
             document.getElementById("cant_vendidos").innerHTML = producto.soldCount;
+            let productos_relac = producto.relatedProducts;
 
             html_Img = ""
             for (let i = 0; i < producto.images.length; i++) { //Recorro las imágenes de cada producto
@@ -59,7 +67,32 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     document.getElementById("comentarios").innerHTML = htmlcomments
                 })
-        })
+            
+            let texto = "";
+            for (let i = 0; i < productos_relac.length; i++){ //Recorro el listado de productos relacionados
+                if (i===0) {
+                    texto+=`
+                <div onclick="setProduct(${productos_relac[i].id})" class="carousel-item active cursor-active" data-bs-interval="10000">
+                    <img src=` + productos_relac[i].image + ` class="d-block w-100" alt="...">
+                    <div class="d-flex h-100 align-bottom justify-content-center bg-light">
+                    <h5>`+productos_relac[i].name+ `</h5>
+                </div>
+                </div>
+                `
+                }
+                else{
+                    texto+=`
+                <div onclick="setProduct(${productos_relac[i].id})" class="carousel-item cursor-active" data-bs-interval="10000">
+                    <img src=` + productos_relac[i].image + ` class="d-block w-100" alt="...">
+                    <div class="d-flex h-100 align-bottom justify-content-center bg-light">
+                        <h5>`+productos_relac[i].name+ `</h5>
+                    </div>
+                </div>
+                `
+                }
+            }
+            document.getElementById("productos_relac_carrusel").innerHTML = texto;
+        });
 
     function comentar() {
         //Fecha y hora
@@ -92,10 +125,28 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
 
-    //Muestra el nombre de usuario en la barra superior, pero en caso de no tener usuario muestra Login
+    //Muestra el nombre de usuario con menú desplegable en la barra superior, pero en caso de no tener usuario muestra Login
+    const menu = document.getElementById("desplegable_login");
     if (localStorage.getItem('user') == undefined) {
-        document.getElementById("mostrarUsuario").innerHTML = "Login"
+        const desplegable =
+            `<a class="nav-link" id="mostrarUsuario" href="login.html">Login</a>`
+        menu.innerHTML = desplegable;
     } else {
-        document.getElementById("mostrarUsuario").innerHTML = localStorage.getItem('user')
+        const desplegable =
+            `<li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="mostrarUsuario" role="button" aria-haspopup="true" aria-expanded="false">` + localStorage.getItem('user') + `</a>
+                <ul class="dropdown-menu" aria-labelledby="mostrarUsuario">
+                    <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                    <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="login.html" onclick="cierraSesion()">Cerrar sesión</a></li>
+                </ul>
+            </li>
+            `
+        menu.innerHTML = desplegable;
     }
 })
+
+function cierraSesion(){
+    localStorage.removeItem("user");
+};
