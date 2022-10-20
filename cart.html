@@ -31,18 +31,80 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item" id="desplegable_login"> <!--Entrega 4, cambio el login por un menú desplegable si la sesión está iniciada--> 
+          <li class="nav-item" id="desplegable_login">
+            <!--Entrega 4, cambio el login por un menú desplegable si la sesión está iniciada-->
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
+    <!--Entrega 5, Carrito-->
+
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <h1 class="m-4 mb-1" style="text-align:center">Carrito de compras</h1>
+      <br>
+      <h3 style="text-align: left">Artículos a comprar:</h3>
+    </div>
+
+    <div id="comp-list-container" class="p-2 m-2"></div> <!--Acá va el listado de productos en el carrito-->
+    
+    <hr>
+
+    <div class="p-2 m-4">
+      <h4 class="p-2">Tipo de envío:</h4>
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="TipoDeEnvio" id="Premium" value="premium" checked>
+        <label class="form-check-label" for="Premium"> <!--Permite elegir la opción sin necesariamente clickear sobre el círculo-->
+          Premium: 2 a 5 días (15%)
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="TipoDeEnvio" id="Express" value="express">
+        <label class="form-check-label" for="Express"> <!--Permite elegir la opción sin necesariamente clickear sobre el círculo-->
+          Express: 5 a 8 días (7%)
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="TipoDeEnvio" id="Standard" value="standard">
+        <label class="form-check-label" for="Standard"> <!--Permite elegir la opción sin necesariamente clickear sobre el círculo-->
+          Standard: 12 a 15 días (5%)
+        </label>
       </div>
     </div>
+
+
+    <div class="p-2 m-3">
+      <h4 class="p-2">Dirección de envío:</h4>
+
+      <div class="row g-2">
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="email" class="form-control" id="floatingInputGridCALLE" value="">
+            <label for="floatingInputGrid">Calle</label>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="email" class="form-control" id="floatingInputGridNUMERO" value="">
+            <label for="floatingInputGrid">Número</label>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row g-2">
+        <div class="col-6">
+          <div class="form-floating">
+            <input type="email" class="form-control" id="floatingInputGridESQUINA" value="">
+            <label for="floatingInputGrid">Esquina</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
   </main>
   <footer class="text-muted">
     <div class="container">
