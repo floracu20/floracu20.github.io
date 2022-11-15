@@ -47,63 +47,204 @@
       <h3 style="text-align: left">Artículos a comprar:</h3>
     </div>
 
-    <div id="comp-list-container" class="p-2 m-2"></div> <!--Acá va el listado de productos en el carrito-->
-    
-    <hr>
+    <div class="container">
+      <div id="comp-list-container" class="p-1 m-2"></div>
+      <!--Acá va el listado de productos en el carrito-->
 
-    <div class="p-2 m-4">
-      <h4 class="p-2">Tipo de envío:</h4>
+      <hr>
 
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="TipoDeEnvio" id="Premium" value="premium" checked>
-        <label class="form-check-label" for="Premium"> <!--Permite elegir la opción sin necesariamente clickear sobre el círculo-->
-          Premium: 2 a 5 días (15%)
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="TipoDeEnvio" id="Express" value="express">
-        <label class="form-check-label" for="Express"> <!--Permite elegir la opción sin necesariamente clickear sobre el círculo-->
-          Express: 5 a 8 días (7%)
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="TipoDeEnvio" id="Standard" value="standard">
-        <label class="form-check-label" for="Standard"> <!--Permite elegir la opción sin necesariamente clickear sobre el círculo-->
-          Standard: 12 a 15 días (5%)
-        </label>
-      </div>
+
+      <form id="formulario" action="#" method="get" class="needs-validation" novalidate>
+
+        <h4>Tipo de envío:</h4>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="TipoDeEnvio" id="Premium" value="0.15"
+            onchange="costoTipoDeEnvio()" required>
+          <label class="form-check-label" for="Premium">
+            <!--Permite elegir la opción sin necesariamente clickear sobre el círculo-->
+            Premium: 2 a 5 días (15%)
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="TipoDeEnvio" id="Express" value="0.07"
+            onchange="costoTipoDeEnvio()" required>
+          <label class="form-check-label" for="Express">
+            <!--Permite elegir la opción sin necesariamente clickear sobre el círculo-->
+            Express: 5 a 8 días (7%)
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="TipoDeEnvio" id="Standard" value="0.05"
+            onchange="costoTipoDeEnvio()" required checked>
+          <label class="form-check-label" for="Standard">
+            <!--Permite elegir la opción sin necesariamente clickear sobre el círculo-->
+            Standard: 12 a 15 días (5%)
+          </label>
+          <div class="invalid-feedback">Debe seleccionar un tipo de envío.</div>
+        </div>
+
+        <div class="p-1 m-3">
+          <h4 class="p-1">Dirección de envío:</h4>
+
+          <div class="row">
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="calle" value="" name="calle" required>
+                <label class="form-check-label" for="calle">Calle</label>
+                <div class="invalid-feedback">Debe ingresar una calle.</div>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="numero" value="" name="numero" required>
+                <label class="form-check-label" for="numero">Número</label>
+                <div class="invalid-feedback">Debe ingresar un número.</div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="esquina" value="" name="esquina" required>
+                <label class="form-check-label" for="esquina">Esquina</label>
+                <div class="invalid-feedback">Debe ingresar una esquina.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Sección de Costos-->
+        <div class="p-1 m-3">
+          <div class="col">
+            <h4 class="p-1">Costos</h4>
+            <ul class="list-group mb-3">
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Subtotal</h6>
+                  <small class="text-muted">Costo unitario del producto por cantidad</small>
+                </div>
+                <span class="text-muted" id="subtotalText">-</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Costo de envío</h6>
+                  <small class="text-muted">Según el tipo de envío</small>
+                </div>
+                <span class="text-muted" id="shippingText">-</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <span>Total ($)</span>
+                <strong id="totalCostText">-</strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="p-1 m-3">
+          <div class="col">
+            <h4 class="mb-3">Forma de pago</h4>
+            <div>
+              <span class="label" id="paymentType">Todavía no ha seleccionado una forma de pago.</span>
+              <!-- Botón de seleccionar que abre el modal -->
+              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                id="boton-banking">Seleccionar</button>
+              <div id="terminos-texto" class="invalid-feedback">
+                Debe seleccionar una forma de pago y llenar todos los campos
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div div class="modal fade form-check" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+          tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Forma de pago</h5>
+              </div>
+              <div class="modal-body">
+                <div class="container">
+                  <div class="row">
+                    <div>
+                      <input id="creditCardPaymentRadio" name="paymentType" type="radio"
+                        class="form-check-input shipping" onchange="activarCampos()" required>
+                      <label class="form-check-label" for="creditCardPaymentRadio">Tarjeta de crédito:</label>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="creditCardNumber">Número de tarjeta</label>
+                      <input type="text" class="form-control" id="creditCardNumber" pattern="[0-9]{4}(-)[0-9]{4}$"
+                        placeholder="XXXX-XXXX" value="" required>
+                      <div class="invalid-feedback">
+                        Debe ingresar un número de tarjeta.
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <label for="creditCardSecurityCode">Código de seg.</label>
+                      <input type="text" class="form-control" id="creditCardSecurityCode" pattern="[0-9]{3}"
+                        placeholder="XXX" value="" required>
+                      <div class="invalid-feedback">
+                        Debe ingresar el código de seguridad.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="dueDate">Vencimiento</label>
+                      <input type="text" class="form-control" id="dueDate" placeholder="MM/AA" value="" required>
+                      <div class="invalid-feedback">
+                        Debe ingresar la fecha de vencimiento.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div>
+                      <input type="radio" id="bankingRadio" name="paymentType" class="form-check-input shipping"
+                        onchange="activarCampos()" required>
+                      <label for="bankingRadio" class="form-check-label">Transferencia bancaria:</label>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="bankAccountNumber">Número de cuenta</label>
+                      <input type="text" class="form-control" id="bankAccountNumber" placeholder="" value="" required>
+                      <div class="invalid-feedback">
+                        Debe ingresar un número de cuenta.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" id="botonCerrar" data-bs-dismiss="modal"
+                    onclick="pagoEsValido()">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="container" style="text-align: center">
+          <button class="btn btn-success btn-lg btn-block text-center" id="btnSubmit" type="submit"
+            onchange="verValidacion()">Finalizar compra</button>
+        </div>
+
+        <div id="alert"></div>
+
     </div>
-
-
-    <div class="p-2 m-3">
-      <h4 class="p-2">Dirección de envío:</h4>
-
-      <div class="row g-2">
-        <div class="col-md">
-          <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInputGridCALLE" value="">
-            <label for="floatingInputGrid">Calle</label>
-          </div>
-        </div>
-        <div class="col-md">
-          <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInputGridNUMERO" value="">
-            <label for="floatingInputGrid">Número</label>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="row g-2">
-        <div class="col-6">
-          <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInputGridESQUINA" value="">
-            <label for="floatingInputGrid">Esquina</label>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
+    </form>
 
   </main>
   <footer class="text-muted">
