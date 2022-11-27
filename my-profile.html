@@ -46,18 +46,87 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item" id="desplegable_login"> <!--Entrega 4, cambio el login por un menú desplegable si la sesión está iniciada--> 
+          <li class="nav-item" id="desplegable_login">
+            <!--Entrega 4, cambio el login por un menú desplegable si la sesión está iniciada-->
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
+    <!--Entrega 7, datos del perfil-->
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+
+      <div class="row">
+        <hr>
+        <br>
+        <div class="col">
+          <h2>Perfil</h2>
+        </div>
+        <div class="col d-flex justify-content-end"> <!-- Desafiate (cargar foto de perfil) -->
+          <img  id="display_image" class="img-fluid img-thumbnail">
+        </div>
       </div>
+      <hr>
+
+      <div class="row p-3">
+        <div class="col-md-5">
+          <label for="nombre1" class="form-label">Primer nombre*</label>
+          <input type="text" class="form-control" id="nombre1" value="" required onchange="removerInvalido(id)"
+            placeholder="Primer nombre">
+          <div class="invalid-feedback">
+            Debe proporcionar un nombre.
+          </div>
+        </div>
+        <div class="col-md-5">
+          <label for="nombre2" class="form-label">Segundo nombre</label>
+          <input type="email" class="form-control" id="nombre2" placeholder="Segundo nombre">
+        </div>
+      </div>
+
+      <div class="row p-3">
+        <div class="col-md-5">
+          <label for="apellido1" class="form-label">Primer apellido*</label>
+          <input type="text" class="form-control" id="apellido1" value="" required onchange="removerInvalido(id)"
+            placeholder="Primer apellido">
+          <div class="invalid-feedback">
+            Debe proporcionar un apellido.
+          </div>
+        </div>
+        <div class="col-md-5">
+          <label for="apellido2" class="form-label">Segundo apellido</label>
+          <input type="email" class="form-control" id="apellido2" placeholder="Segundo apellido">
+        </div>
+      </div>
+
+      <div class="row p-3">
+        <div class="col-md-5">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="correo" placeholder="" disabled>
+        </div>
+        <div class="col-md-5">
+          <label for="email" class="form-label">Imagen de perfil</label>
+          <input type="file" class="form-control" id="image_input" accept="image/png, image/jpg">
+        </div>
+      </div>
+
+      <div class="row p-3">
+        <div class="col-md-5">
+          <label for="teléfono" class="form-label">Teléfono de contacto*</label>
+          <input type="number" class="form-control" id="teléfono" value="" required onchange="removerInvalido(id)">
+          <div class="invalid-feedback">
+            Debe proporcionar un número de teléfono.
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <button type="submit" class="btn btn-success btn-lg btn-block text-center" id="guardarDatos"
+        onclick="validarDatos()">Guardar cambios</button>
+
     </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">

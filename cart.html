@@ -40,7 +40,6 @@
   </nav>
   <main>
     <!--Entrega 5, Carrito-->
-
     <div class="container">
       <h1 class="m-4 mb-1" style="text-align:center">Carrito de compras</h1>
       <br>
@@ -49,10 +48,9 @@
 
     <div class="container">
       <div id="comp-list-container" class="p-1 m-2"></div>
-      <!--Acá va el listado de productos en el carrito-->
+        <!--Acá va el listado de productos en el carrito-->
 
       <hr>
-
 
       <form id="formulario" action="#" method="get" class="needs-validation" novalidate>
 
@@ -66,7 +64,6 @@
             Premium: 2 a 5 días (15%)
           </label>
         </div>
-
         <div class="form-check">
           <input class="form-check-input" type="radio" name="TipoDeEnvio" id="Express" value="0.07"
             onchange="costoTipoDeEnvio()" required>
@@ -75,7 +72,6 @@
             Express: 5 a 8 días (7%)
           </label>
         </div>
-
         <div class="form-check">
           <input class="form-check-input" type="radio" name="TipoDeEnvio" id="Standard" value="0.05"
             onchange="costoTipoDeEnvio()" required checked>
@@ -161,7 +157,6 @@
           </div>
         </div>
 
-
         <!-- Modal -->
         <div div class="modal fade form-check" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
           tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -234,14 +229,10 @@
           </div>
         </div>
 
-
-
         <div class="container" style="text-align: center">
           <button class="btn btn-success btn-lg btn-block text-center" id="btnSubmit" type="submit"
             onchange="verValidacion()">Finalizar compra</button>
         </div>
-
-        <div id="alert"></div>
 
     </div>
     </form>
